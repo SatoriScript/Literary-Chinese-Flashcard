@@ -74,10 +74,10 @@
             box-sizing: border-box;
             text-align: center;
         }
-        .card__face--front { font-size: 5rem; font-weight: bold; }
-        .card__face--back { transform: rotateY(180deg); }
-        .pinyin { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
-        .meaning { font-size: 1.2rem; }
+        .card__face--front { font-size: 4rem; font-weight: bold; }
+        .card__face--back { transform: rotateY(180deg); padding: 10px; }
+        .pinyin { font-size: 1.8rem; color: var(--primary); margin-bottom: 10px; }
+        .meaning { font-size: 1.1rem; overflow-y: auto; max-height: 180px; }
         
         .controls { display: flex; gap: 10px; margin-bottom: 10px; }
         button {
@@ -154,69 +154,141 @@
 </div>
 
 <script>
-    // Vocabulary Data
+    // Complete Vocabulary Data Extracted from Week 03 B
     const vocab = [
-        { char: "始", pinyin: "shǐ", meaning: "the beginning; to begin" },
-        { char: "終", pinyin: "zhōng", meaning: "the end; to be finished; to die" },
-        { char: "強", pinyin: "qiǎng", meaning: "to force; with difficulty" },
-        { char: "法", pinyin: "fǎ", meaning: "Dharma, law, method" },
-        { char: "從", pinyin: "cóng", meaning: "from; to follow (Ablative case marker)" },
-        { char: "悟", pinyin: "wù", meaning: "to understand (all of a sudden); awaken" },
-        { char: "色", pinyin: "sè", meaning: "form, matter; color (Sanskrit: rūpa)" },
-        { char: "覺", pinyin: "jué", meaning: "to wake up, be aware of; enlightened" },
-        { char: "為", pinyin: "wéi", meaning: "to be, to become (Copula verb)" }
+        { char: "佛", pinyin: "fó", meaning: "Buddha; also used the transliterated form Fótuó 佛陀" },
+        { char: "教", pinyin: "jiào", meaning: "teachings" },
+        { char: "三", pinyin: "sān", meaning: "three" },
+        { char: "字", pinyin: "zì", meaning: "letters; characters" },
+        { char: "經", pinyin: "jīng", meaning: "a book; a scripture, a classic" },
+        { char: "生起", pinyin: "shēngqǐ", meaning: "arising, life, living; becoming; production; coming into existence, birth, arise" },
+        { char: "生", pinyin: "shēng", meaning: "to be born; to give birth, to produce, to bring forth, to beget" },
+        { char: "起", pinyin: "qǐ", meaning: "to arise, to begin; arising, to start" },
+        { char: "法", pinyin: "fǎ", meaning: "dharma; law, method, practice, phenomena; mental object" },
+        { char: "佛法僧", pinyin: "fó fǎ sēng", meaning: "Buddha, Dharma and Sangha (assembly)" },
+        { char: "三寶", pinyin: "sānbǎo", meaning: "Three jewels (Skt. Triratna)" },
+        { char: "界", pinyin: "jiè", meaning: "realm, sphere, environment, world; defined area or space. That which supports or sustains." },
+        { char: "法界", pinyin: "fǎjiè", meaning: "dharmadhatu" },
+        { char: "零", pinyin: "líng", meaning: "zero" },
+        { char: "一", pinyin: "yī", meaning: "one" },
+        { char: "二", pinyin: "èr", meaning: "two" },
+        { char: "四", pinyin: "sì", meaning: "four" },
+        { char: "五", pinyin: "wǔ", meaning: "five" },
+        { char: "六", pinyin: "liù", meaning: "six" },
+        { char: "七", pinyin: "qī", meaning: "seven" },
+        { char: "八", pinyin: "bā", meaning: "eight" },
+        { char: "九", pinyin: "jiǔ", meaning: "nine" },
+        { char: "十", pinyin: "shí", meaning: "ten" },
+        { char: "十一", pinyin: "shí yī", meaning: "eleven" },
+        { char: "二十一", pinyin: "èr shí yī", meaning: "twenty one" },
+        { char: "百", pinyin: "bǎi", meaning: "one hundred" },
+        { char: "一百零一", pinyin: "yī bǎi líng yī", meaning: "one hundred and one" },
+        { char: "千", pinyin: "qiān", meaning: "one thousand" },
+        { char: "萬", pinyin: "wàn", meaning: "ten thousand" },
+        { char: "億", pinyin: "yì", meaning: "hundred thousand" },
+        { char: "極", pinyin: "jí", meaning: "Literally 'extreme'" },
+        { char: "恒河沙", pinyin: "hénghéshā", meaning: "A metaphor: sands of the Ganges; as many as the sand grains in the river Ganges" },
+        { char: "阿僧祇", pinyin: "āsēngqí", meaning: "(skt. transliteration) asamkhyeya; innumerable, infinite" },
+        { char: "那由他", pinyin: "nàyóutā", meaning: "(skt. transliteration) niyuta; myriad" },
+        { char: "不可思議", pinyin: "bùkěsīyì", meaning: "Unfathomable; mysterious, wondrous (Skt. Acintya)" },
+        { char: "無量大數", pinyin: "wúliàngdàshù", meaning: "Lit: uncountably/Immeasurably, incalculably big number" },
+        { char: "無量", pinyin: "wúliàng", meaning: "uncountable, immeasurable, incalculable, inconceivable, unquantifiable" },
+        { char: "無", pinyin: "wú", meaning: "there is/there are no....without, -less" },
+        { char: "始", pinyin: "shǐ", meaning: "the beginning, to begin; only then; the preliminary Mahayana teachings on Emptiness and Consciousness only" },
+        { char: "終", pinyin: "zhōng", meaning: "end, to be finished; to die; the final Mahayana teachings of Tathagatagarbha" },
+        { char: "內", pinyin: "nèi", meaning: "inside" },
+        { char: "外", pinyin: "wài", meaning: "outside" },
+        { char: "強", pinyin: "qiǎng", meaning: "to force (o.s to do s.th); to....something with difficulty" },
+        { char: "立", pinyin: "lì", meaning: "to stand, establish; to be established" },
+        { char: "名", pinyin: "míng", meaning: "name; to be called" },
+        { char: "為", pinyin: "wéi", meaning: "is/are; to become; to make, do; to serve as; being, as...(copula verb)" },
+        { char: "性", pinyin: "xìng", meaning: "nature, essence" },
+        { char: "即", pinyin: "jí", meaning: "is identical to; immediately" },
+        { char: "法身", pinyin: "fǎshēn", meaning: "Dharma-body" },
+        { char: "身", pinyin: "shēn", meaning: "body; the tactile sense organ" },
+        { char: "因", pinyin: "yīn", meaning: "cause, because" },
+        { char: "不", pinyin: "bù", meaning: "not" },
+        { char: "覺", pinyin: "jué", meaning: "to wake up, be aware of" },
+        { char: "號", pinyin: "hào", meaning: "to be called" },
+        { char: "無明", pinyin: "wúmíng", meaning: "ignorant; ignorance (skt: avidyā)" },
+        { char: "空", pinyin: "kōng", meaning: "space; emptiness, empty, void; only, alone" },
+        { char: "色", pinyin: "sè", meaning: "form, matter; color (skt: rūpa)" },
+        { char: "現", pinyin: "xiàn", meaning: "to manifest, appear" },
+        { char: "情", pinyin: "qíng", meaning: "Sentiency (Skt. sattva); sentient beings 有情 youqing; feeling, emotion" },
+        { char: "器", pinyin: "qì", meaning: "receptacle, vessel, (Skt. bhājana, bhānda; kumbha, pātra)" },
+        { char: "分", pinyin: "fēn", meaning: "to separate, differentiate, distribute" },
+        { char: "世間", pinyin: "shìjiān", meaning: "the world; sentient beings (Skt. loka)" },
+        { char: "從", pinyin: "cóng", meaning: "from, to follow" },
+        { char: "此", pinyin: "cǐ", meaning: "this, these, here" },
+        { char: "迷", pinyin: "mí", meaning: "to be confused, get lost" },
+        { char: "則", pinyin: "zé", meaning: "[when/since/if]..., then; as a result" },
+        { char: "凡", pinyin: "fán", meaning: "worldling, a fool, an ignorant person, an unawakened person, immature being; ordinary, secular" },
+        { char: "悟", pinyin: "wù", meaning: "to understand (all of a sudden)" },
+        { char: "聖", pinyin: "shèng", meaning: "holy, noble, a holy/awakened person, an ārya" },
+        { char: "真如", pinyin: "zhēnrú", meaning: "thusness, suchness (Skt. tathata), things as they are" },
+        { char: "體", pinyin: "tǐ", meaning: "essence, substance of something. The thing in itself" },
+        { char: "須", pinyin: "xū", meaning: "must, it is necessary to" },
+        { char: "親證", pinyin: "qīnzhèng", meaning: "direct realization (Skt: sākṣāt-vkr)" },
+        { char: "親", pinyin: "qīn", meaning: "close, in person; to be close to, relatives" },
+        { char: "證", pinyin: "zhèng", meaning: "to realize, witness; proof, realization" },
+        { char: "道", pinyin: "dào", meaning: "the way, path, nirvana" },
+        { char: "成", pinyin: "chéng", meaning: "to accomplish; to become" },
+        { char: "者", pinyin: "zhě", meaning: "the one [who, which]; used after a verb to indicate a person who does the action" },
+        { char: "尊", pinyin: "zūn", meaning: "The blessed-one; excellent, superb; foremost; a sage or worthy; high; venerable" },
+        { char: "大悲", pinyin: "dàbēi", meaning: "the great compassion (skt: mahā-karuṇā)" },
+        { char: "願", pinyin: "yuàn", meaning: "first resolve, vow; to vow, make resolve firmly to...." },
+        { char: "示", pinyin: "shì", meaning: "to manifest, show, point out" },
+        { char: "誕生", pinyin: "dànshēng", meaning: "birth, being born." },
+        { char: "白言", pinyin: "bái yán", meaning: "to tell (s.o)" }
     ];
 
     let currentIndex = 0;
     const card = document.getElementById('card');
-    let writers = []; // Stores HanziWriter instances
+    let writers = []; 
 
     function updateCard() {
-        // Reset flip state
         card.classList.remove('is-flipped');
         
-        // Update text
         setTimeout(() => {
             document.getElementById('card-front').innerText = vocab[currentIndex].char;
             document.getElementById('card-pinyin').innerText = vocab[currentIndex].pinyin;
             document.getElementById('card-meaning').innerText = vocab[currentIndex].meaning;
             
-            // Render tracing characters
             renderWriters(vocab[currentIndex].char);
         }, 150);
     }
 
     function renderWriters(word) {
         const target = document.getElementById('character-target');
-        target.innerHTML = ''; // Clear previous
+        target.innerHTML = ''; 
         writers = [];
 
-        // Support multi-character words by looping through them
         for (let i = 0; i < word.length; i++) {
             let div = document.createElement('div');
             div.className = 'writer-box';
             target.appendChild(div);
 
+            // Dynamically resize character box for longer binomials/phrases
+            let size = word.length > 2 ? 100 : 150; 
+
             let writer = HanziWriter.create(div, word[i], {
-                width: 180,
-                height: 180,
+                width: size,
+                height: size,
                 padding: 10,
                 showOutline: true,
                 strokeAnimationSpeed: 1,
                 delayBetweenStrokes: 100,
-                radicalColor: '#168F16' // Highlights the radical in green
+                radicalColor: '#168F16' 
             });
             writers.push(writer);
         }
     }
 
-    // Flashcard Controls
     function flipCard() { card.classList.toggle('is-flipped'); }
     function nextCard() { currentIndex = (currentIndex + 1) % vocab.length; updateCard(); }
     function prevCard() { currentIndex = (currentIndex - 1 + vocab.length) % vocab.length; updateCard(); }
     document.getElementById('scene').addEventListener('click', flipCard);
 
-    // Tracing Controls
     function animateStrokes() {
         writers.forEach(writer => {
             writer.cancelQuiz();
@@ -237,14 +309,12 @@
         });
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.code === 'Space') { e.preventDefault(); flipCard(); }
         else if (e.code === 'ArrowRight') { nextCard(); }
         else if (e.code === 'ArrowLeft') { prevCard(); }
     });
 
-    // Init
     updateCard();
 </script>
 
